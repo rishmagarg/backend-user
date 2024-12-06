@@ -5,59 +5,54 @@ const app = express()
 app.use(cors());
 app.use(express.json());
 
-const players = [
+const users = [
     {
       id: 1,
-      name: 'Virat Kohli',
-      country: 'India',
-      role: 'Batsman',
-      runs: 12000,
-      wickets: 4,
+      username: 'octocat',
+      name: 'The Octocat',
+      repoCount: 8,
+      location: 'San Francisco',
     },
     {
       id: 2,
-      name: 'James Anderson',
-      country: 'England',
-      role: 'Bowler',
-      runs: 1243,
-      wickets: 600,
+      username: 'torvalds',
+      name: 'Linus Torvalds',
+      repoCount: 25,
+      location: 'Portland',
     },
     {
       id: 3,
-      name: 'Kane Williamson',
-      country: 'New Zealand',
-      role: 'Batsman',
-      runs: 7000,
-      wickets: 29,
+      username: 'gaearon',
+      name: 'Dan Abramov',
+      repoCount: 50,
+      location: 'London',
     },
     {
       id: 4,
-      name: 'Pat Cummins',
-      country: 'Australia',
-      role: 'Bowler',
-      runs: 750,
-      wickets: 250,
+      username: 'addyosmani',
+      name: 'Addy Osmani',
+      repoCount: 42,
+      location: 'Mountain View',
     },
     {
       id: 5,
-      name: 'Ben Stokes',
-      country: 'England',
-      role: 'All-rounder',
-      runs: 4500,
-      wickets: 150,
+      username: 'tj',
+      name: 'TJ Holowaychuk',
+      repoCount: 150,
+      location: 'Victoria',
     },
   ];
 
-  app.get('/players', (req,res) => {
-    res.json({players});
+  app.get('/users', (req,res) => {
+    res.json({users});
   });
 
-  app.get('/players/:id', (req,res) => {
-    let playerId = parseInt(req.params.id);
-    let player = players.find((player) => player.id === playerId)
+  app.get('/users/:id', (req,res) => {
+    let userId = parseInt(req.params.id);
+    let user = users.find((user) => user.id === userId)
     
-    if(player){
-        res.json({player})
+    if(user){
+        res.json({user})
     }
     else{
         res.status(404).json({message : "User not found"});
